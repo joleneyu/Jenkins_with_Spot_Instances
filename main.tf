@@ -9,6 +9,7 @@ terraform {
   required_version = ">= 0.14.9"
 }
 
+# replace with your aws configuration 
 provider "aws" {
   profile = "default"
   region  = "ap-southeast-2"
