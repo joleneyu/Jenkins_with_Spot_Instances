@@ -25,12 +25,20 @@ resource "aws_security_group" "asg" {
   description       = "Allow jenkins master traffic get through"  
   vpc_id = module.vpc.vpc_id
 
-    ingress {
+  ingress {
+    from_port        = 0
+    to_port          = 22
+    protocol         = "tcp"
+    cidr_blocks      = ["58.164.52.9/32"]
+  }
+
+  egress {
       from_port        = 0
       to_port          = 0
-      protocol         = "tcp"
-      cidr_blocks      = ["58.164.52.9/32"]
-  }
+      protocol         = "-1"
+      cidr_blocks      = ["0.0.0.0/0"]
+      ipv6_cidr_blocks = ["::/0"]
+    }
 
   tags = {
     Name = "ASG-SG"
