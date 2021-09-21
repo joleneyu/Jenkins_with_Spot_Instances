@@ -19,7 +19,9 @@ resource "aws_autoscaling_group" "jenkins" {
   mixed_instances_policy {
     instances_distribution {
       on_demand_base_capacity                  = 0
+      on_demand_percentage_above_base_capacity = 0
       spot_allocation_strategy                 = "capacity-optimized"
+      spot_max_price                           = 0.0044
     }
     launch_template {
       launch_template_specification {
